@@ -1,0 +1,4 @@
+# aapi To retrieve Calico NetworkPolicy resources in a Kubernetes cluster
+curl -k -X GET \
+  -H "Authorization: Bearer $(kubectl get secrets -o jsonpath='{.items[?(@.metadata.annotations["kubernetes\.io/service-account\.name"]=="default")].data.token}' | base64 -d)" \
+  https://kubernetes.default.svc/apis/crd.projectcalico.org/v1/networkpolicies
